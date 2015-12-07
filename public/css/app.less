@@ -1,0 +1,128 @@
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+@mainFont: "Lato", "Helvetica", "Arial";
+@headerHeight: 60px;
+@sidebarWidth: 220px;
+@sidebarBgColor: #4D5250;
+@sidebarColor: rgba(255, 255, 255, 0.75);
+
+body {
+	font-family: @mainFont
+}
+
+div {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#container {
+	padding-left:@sidebarWidth;
+}
+
+/* Header
+ ******************************************/
+#header {
+	position: fixed;
+	top: 0px; left: 0px;
+	width:100%; height:@headerHeight;
+	z-index:100;
+	padding-left:@sidebarWidth;
+
+	#sidebar-header {
+		width: @sidebarWidth;
+		background: @sidebarBgColor;
+		position:absolute; top:0px; left:0px;
+		padding:15px;
+		#team-name {
+			color:white;
+			font-size:1.3em;
+		}
+	}
+
+	#messages-header {
+		border-bottom: 1px solid #e8e8e8;
+
+		#channel-name {
+			margin:15px;
+			font-size:1.5em;
+			font-weight: bold;
+			color:#555459;
+		}
+	}
+}
+
+/* Sidebar
+ ******************************************/
+#sidebar {
+	position:fixed; left:0px;
+	width: @sidebarWidth;
+	height:100%;
+	background: @sidebarBgColor;
+	font-size:14px;
+	padding: @headerHeight+15px 15px 15px 15px;
+	color: @sidebarColor;
+
+	#channels-header {
+		font-size:1em;
+		text-transform: uppercase;
+		margin-bottom:8px;
+	}
+
+	.channels-list {
+		list-style: none;
+		li {
+			margin:0px;
+			a {
+				color: @sidebarColor;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+/* Messages
+ ******************************************/
+#messages {
+	height:100%;
+	padding: @headerHeight 15px 15px 15px;
+
+	.message {
+		.clearfix;
+		margin:5px 0;
+
+		.icon {
+			float:left;
+			display: block; width:45px; height:45px;
+			border-radius: .2rem;
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+		.content {
+			float:left;
+			padding-left:10px;
+
+			.name {
+				display: inline-block;
+				font-weight: bold;
+			}
+			.time {
+				display: inline-block;
+				margin-left:6px;
+				font-size:9px;
+				color:#9e9ea6;
+			}
+			.text {
+
+			}
+		}
+	}
+}
