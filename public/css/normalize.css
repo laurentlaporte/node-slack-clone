@@ -425,3 +425,28 @@ td,
 th {
   padding: 0;
 }
+
+
+/**
+ * Remove scroll bounce
+ */
+ html, body {
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+ }
+
+ body > div {
+     height: 100%;
+     overflow: scroll;
+     -webkit-overflow-scrolling: touch;
+ }
+
+/**
+ * Border box everywhere
+ */
+ div {
+ 	-webkit-box-sizing: border-box;
+ 	-moz-box-sizing: border-box;
+ 	box-sizing: border-box;
+ }
