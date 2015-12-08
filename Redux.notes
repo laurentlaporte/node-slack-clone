@@ -1,0 +1,22 @@
+Redux + React:
+
+State: Object qui contient du data
+
+Action: Object qui décrit l'information nécessaire pour changer un state
+
+Reducer:
+  - Fonction qui prend un state et un action.
+  - Le but est de retourner un nouveau state selon l'action qui doit etre effectué dessus.
+  - Si le state passé est undefined, il faut retourner le default state.
+
+Store:
+  - Class qui prend un Reducer en paramètre.
+  - À son propre "state", permet de lui demander son "currentState"
+  - Permet de lui "dispatch" une action, qui va modifier son current state grace au reducer.
+  - Il est ensuite possible d'enregistrer des "listeners" qui peuvent etre appeller a chaque state change. (Ex: render())
+
+React component:
+  - Component de l'application qui render son propre html based sur ses current props.
+  - Les actions de l'utilisateur sur le component "dispatch" des "actions" sur un store.
+  - Ex: Click sur le + du compteur dispatch une "action" {type: "INCREMENT"} sur le "CounterStore" qui lui va rapeller ses listeners (render)
+  - Les callbaks sur le UI ne doivent pas eux même appeller le store, c'est plutot l'application qui leur donne des callbacks functions

@@ -1,15 +1,16 @@
-var React = require('react');
-var moment = require('moment');
+import React, { Component, PropTypes } from 'react';
+import moment from 'moment'
 
-var Message = React.createClass({
-  getDefaultProps() {
-		return {
-      icon: 'https://placeholdit.imgix.net/~text?txtsize=13&txt=Lau&w=45&h=45',
-      name: null,
-			text: null,
-      time: null
-		};
-	},
+export default class Message extends Component {
+
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    icon: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    time: PropTypes.number.isRequired
+  }
+
   render() {
     return (
       <div className='message'>
@@ -22,6 +23,5 @@ var Message = React.createClass({
       </div>
     );
   }
-});
 
-module.exports = Message;
+}
