@@ -5,10 +5,14 @@ export default class Message extends Component {
 
   static propTypes = {
     actions: PropTypes.object.isRequired,
-    icon: PropTypes.string.isRequired,
+    icon: PropTypes.string,
     name: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     time: PropTypes.number.isRequired
+  }
+
+  static defaultProps = {
+    icon: 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Lau&w=75&h=75'
   }
 
   render() {

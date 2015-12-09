@@ -20,3 +20,12 @@ React component:
   - Les actions de l'utilisateur sur le component "dispatch" des "actions" sur un store.
   - Ex: Click sur le + du compteur dispatch une "action" {type: "INCREMENT"} sur le "CounterStore" qui lui va rapeller ses listeners (render)
   - Les callbaks sur le UI ne doivent pas eux même appeller le store, c'est plutot l'application qui leur donne des callbacks functions
+  - Il est possible d'accèdre à une réference aux childrens components en utilisant la propriété ref="myComponent" et ensuite avec this.refs.myComponent
+
+Component Context:
+  - Permet de share un component.prop avec tout ses childrens components
+  - Déclarer avec getChildContext, qui retourne { myProp: this.props.myProp }
+  - Il ne faut pas oublier de déclarer les propTypes dans "static childContextTypes = { myProp: React.PropTypes.object }"
+  - Utiliser pour share le store avec tout les components du app (voir react-redux/provider)
+  - Les childrens peuvent ensuite accèder à aux context vars avec "this.context.myProp" mais seulement si il on decalrer quelle
+    context recevoir avec "static contextTypes = { myProp: React.PropTypes.object }"

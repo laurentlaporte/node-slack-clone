@@ -3,22 +3,25 @@ import Message from './Message.jsx'
 
 export default class MessagesList extends Component {
 
-  static defaultProps = {
-    messages: []
-  }
-
   static propTypes = {
     actions: PropTypes.object.isRequired,
-    messages: PropTypes.array.isRequired
+    messages: PropTypes.object.isRequired
+  }
+
+  componentWillMount() {
+    this.props.actions.loadInitialMessages()
   }
 
   render() {
+    const { actions } = this.props
     return (
-      <div className='messages'>
+      <div id='messages'>
       {
-        this.props.messages.map((message, i) => {
+        this.props.messages.data.map((message, i) => {
           return (
             <Message
+              key={i}
+              actions={actions}
               text={message.text}
               name={message.name}
               time={message.time}

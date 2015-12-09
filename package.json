@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./server/bin/www",
     "start-dev": "nodemon --watch server ./server/bin/www",
-    "build-js": "browserify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties ] ] --debug client/main.js -o server/public/bundle.js",
-    "watch-js":   "watchify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties ] ] --debug client/main.js -o server/public/bundle.js"
+    "build-js": "browserify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-object-rest-spread ] ] --debug client/main.js -o server/public/bundle.js",
+    "watch-js":   "watchify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-object-rest-spread ] ] --debug client/main.js -o server/public/bundle.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
