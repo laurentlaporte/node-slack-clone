@@ -8,10 +8,6 @@ export default class MessagesList extends Component {
     messages: PropTypes.object.isRequired
   }
 
-  componentWillMount() {
-    this.props.actions.loadInitialMessages()
-  }
-
   render() {
     const { actions } = this.props
     return (

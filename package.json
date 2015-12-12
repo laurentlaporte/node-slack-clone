@@ -6,7 +6,7 @@
     "start": "node ./server/bin/www",
     "start-dev": "nodemon --watch server ./server/bin/www",
     "build-js": "browserify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-object-rest-spread ] ] --debug client/main.js -o server/public/bundle.js",
-    "watch-js":   "watchify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-object-rest-spread ] ] --debug client/main.js -o server/public/bundle.js"
+    "watch-js": "watchify -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-object-rest-spread ] ] --debug client/main.js -o server/public/bundle.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -30,6 +30,7 @@
     "babel-preset-es2015": "~6.3.13",
     "watchify": "~3.6.1",
     "babel-preset-stage-0": "~6.3.13",
-    "babel-plugin-transform-class-properties": "~6.3.13"
+    "babel-plugin-transform-class-properties": "~6.3.13",
+    "webpack": "~1.12.9"
   }
 }

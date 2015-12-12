@@ -1,4 +1,4 @@
-import * as Promises from '../promises/index'
+/* Message list */
 
 export function addMessage(message) {
   return {
@@ -14,21 +14,32 @@ export function receiveMessage(message) {
   };
 }
 
-export function loadMessages() {
-  return {
-    types: ['LOAD_MESSAGES', 'LOAD_MESSAGES_SUCCESS', 'LOAD_MESSAGES_FAIL'],
-    promise: Promises.loadMessages()
+/* Messages list */
+
+export function loadInitialMessages() {
+  return dispatch => {
+    dispatch(loadingInitialMessages)
+    return fetch('/api/messages')
+      .then(req => req.json())
+      .then(json => dispatch(receiveInitialMessages(json)))
   }
 }
 
-export function loadMessagesSuccess() {
+export function loadingInitialMessages(data) {
   return {
-    type: 'LOAD_MESSAGES_SUCCESS'
+    type: 'LOADING_MESSAGES'
   }
 }
 
-export function loadMessagesFail() {
+export function receiveInitialMessages(data) {
   return {
-    type: 'LOAD_MESSAGES_FAIL'
+    type: 'RECEIVE_MESSAGES',
+    data
+  }
+}
+
+export function receiveInitialMessagesFail() {
+  return {
+    type: 'RECEIVE_MESSAGES_FAIL'
   }
 }

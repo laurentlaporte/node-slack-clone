@@ -11,6 +11,11 @@ class AppContainer extends Component {
     messages: PropTypes.object.isRequired
   }
 
+  componentWillMount() {
+    const { actions } = this.props
+    actions.loadInitialMessages()
+  }
+
   render() {
     const { actions, messages } = this.props
     return (
