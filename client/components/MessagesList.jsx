@@ -4,7 +4,6 @@ import Message from './Message.jsx'
 export default class MessagesList extends Component {
 
   static propTypes = {
-    actions: PropTypes.object.isRequired,
     messages: PropTypes.object.isRequired
   }
 
@@ -18,9 +17,7 @@ export default class MessagesList extends Component {
             <Message
               key={i}
               actions={actions}
-              text={message.text}
-              name={message.name}
-              time={message.time}
+              {...message}
             />
           );
         })

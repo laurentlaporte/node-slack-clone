@@ -5,10 +5,10 @@ export default class Message extends Component {
 
   static propTypes = {
     actions: PropTypes.object.isRequired,
-    icon: PropTypes.string,
-    name: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    time: PropTypes.number.isRequired
+    time: PropTypes.number.isRequired,
+    icon: PropTypes.string
   }
 
   static defaultProps = {
@@ -20,7 +20,7 @@ export default class Message extends Component {
       <div className='message'>
         <a href="/" className="icon" style={{backgroundImage: 'url('+this.props.icon+')'}}></a>
         <div className="content">
-          <div className="name">{this.props.name}</div>
+          <div className="username">{this.props.username}</div>
           <div className="time">{moment(this.props.time).format('h:mm A')}</div>
           <div className="text">{this.props.text}</div>
         </div>

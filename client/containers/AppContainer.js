@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import MessagesList from '../components/MessagesList.jsx'
-import * as AppActions from '../actions/index'
+import AddMessage from '../components/AddMessage.jsx'
+import * as Actions from '../actions/actions'
+
+const socket = io.connect();
 
 class AppContainer extends Component {
 
@@ -14,6 +18,11 @@ class AppContainer extends Component {
   componentWillMount() {
     const { actions } = this.props
     actions.loadInitialMessages()
+
+    // Dispatch action when we receive new message via socket
+    socket.on('new_message', function(message) {
+      actions.receiveMessage(message)
+    });
   }
 
   render() {
@@ -45,6 +54,7 @@ class AppContainer extends Component {
           </div>
         </div>
         <MessagesList actions={actions} messages={messages} />
+        <AddMessage actions={actions} />
       </div>
     )
   }
@@ -59,7 +69,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(AppActions, dispatch)
+    actions: bindActionCreators(Actions, dispatch)
   }
 }
 

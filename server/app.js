@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require("less-middleware");
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -21,7 +22,14 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./routes/api'));
+// connect mongo db
+mongoose.connect('mongodb://localhost/node_slack_clone');
+process.on('uncaughtException', function (err) {
+  console.log(err);
+});
+
+// routes
+app.use('/api', require('./routes/api'));
 app.use(require('./routes/app'));
 
 // catch 404 and forward to error handler

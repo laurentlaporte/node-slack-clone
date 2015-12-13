@@ -1,8 +1,25 @@
-/* Message list */
+/* Message */
 
 export function addMessage(message) {
+  return dispatch => {
+    return fetch('/api/messages', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(message)
+    })
+      .then(dispatch(receiveMessage(message)))
+      .catch(error => {
+        dispatch(addMessageFail(message))
+      })
+  }
+}
+
+export function addMessageFail(message) {
   return {
-    type: 'ADD_MESSAGE',
+    type: 'ADD_MESSAGE_FAIL',
     message
   };
 }
@@ -22,6 +39,7 @@ export function loadInitialMessages() {
     return fetch('/api/messages')
       .then(req => req.json())
       .then(json => dispatch(receiveInitialMessages(json)))
+      .catch(req => dispatch(receiveInitialMessagesFail(req)))
   }
 }
 
