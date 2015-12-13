@@ -22,7 +22,7 @@ router.post('/messages', function(req, res, next) {
       console.log(err);
       return res.status(500).json({msg: 'internal server error'});
     }
-    
+
     io.sockets.emit('new_message', data)
 
     res.json(data);

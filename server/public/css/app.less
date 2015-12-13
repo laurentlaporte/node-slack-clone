@@ -9,13 +9,15 @@
   }
 }
 @mainFont: "Lato", "Helvetica", "Arial";
+@mainColor: #3d3c40;
 @headerHeight: 60px;
 @sidebarWidth: 220px;
 @sidebarBgColor: #4D5250;
 @sidebarColor: rgba(255, 255, 255, 0.75);
 
 body {
-	font-family: @mainFont
+	font-family: @mainFont;
+  color:@mainColor;
 }
 
 #container {
@@ -135,8 +137,12 @@ body {
   background:white;
 
   .add-message {
+    paddidng:10px;
+
     textarea {
+      border:2px solid #E0E0E0;
       width:100%;
+      font-size: 15px;
     }
   }
 }

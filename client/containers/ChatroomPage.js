@@ -1,21 +1,25 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+const socket = io.connect();
 
 import MessagesList from '../components/MessagesList.jsx'
 import AddMessage from '../components/AddMessage.jsx'
-import * as Actions from '../actions/actions'
 
-const socket = io.connect();
-
-class AppContainer extends Component {
+export default class ChatroomPage extends Component {
 
   static propTypes = {
     actions: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
     messages: PropTypes.object.isRequired
   }
 
   componentWillMount() {
+    if (this.props.user.name === null) {
+      this.props.history.pushState(null, '/')
+    }
+  }
+
+  componentDidMount() {
     const { actions } = this.props
     actions.loadInitialMessages()
 
@@ -26,7 +30,7 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { actions, messages } = this.props
+    const { actions, user, messages } = this.props
     return (
       <div id="container">
         <div id="header">
@@ -54,26 +58,8 @@ class AppContainer extends Component {
           </div>
         </div>
         <MessagesList actions={actions} messages={messages} />
-        <AddMessage actions={actions} />
+        <AddMessage actions={actions} user={user} />
       </div>
     )
   }
-
 }
-
-function mapStateToProps(state) {
-  return {
-    messages: state.messages
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppContainer)

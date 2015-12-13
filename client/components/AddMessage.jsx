@@ -6,7 +6,8 @@ export default class AddMessage extends Component {
   /* Init */
 
   static propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   }
 
   constructor(props, context) {
@@ -30,7 +31,7 @@ export default class AddMessage extends Component {
         id: ShortId.generate(),
         time: (new Date().getTime()),
         text: text,
-        username: 'Laurent'
+        username: this.props.user.name
       })
 
       // Reset textarea

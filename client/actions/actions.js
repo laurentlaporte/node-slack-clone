@@ -61,3 +61,12 @@ export function receiveInitialMessagesFail() {
     type: 'RECEIVE_MESSAGES_FAIL'
   }
 }
+
+/* User */
+
+export function setUser(user) {
+  return {
+    type: 'SET_USER',
+    user
+  }
+}
