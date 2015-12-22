@@ -13,6 +13,8 @@ const store = configureStore()
 
 const history = createHistory()
 
+require("./styles/app.less");
+
 render(
   <Provider store={store}>
     <Router history={history}>
