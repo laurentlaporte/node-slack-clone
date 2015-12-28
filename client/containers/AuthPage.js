@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+
+import '../styles/auth.less';
 
 export default class AuthPage extends Component {
 
@@ -30,23 +32,26 @@ export default class AuthPage extends Component {
   render() {
     return (
       <main id="page-auth" style={{display: 'flex', justifyContent: 'center'}}>
-        <form onSubmit={this.handleSubmit.bind(this)} >
-          <h3>Enter your username:</h3>
+
+        <div className="auth-form">
+          <form onSubmit={this.handleSubmit.bind(this)} >
+            <h3>Enter your username:</h3>
+
+            <input
+              ref="username"
+              type="text"
+              value={this.state.username}
+              onChange={this.onChange.bind(this)}
+            />
 
           <input
-            ref="username"
-            type="text"
-            value={this.state.username}
-            onChange={this.onChange.bind(this)}
+            type="submit"
+            value="Go"
+            style={{marginLeft: '10px'}}
           />
 
-        <input
-          type="submit"
-          value="Go"
-          style={{marginLeft: '10px'}}
-        />
-
-        </form>
+          </form>
+        </div>
       </main>
     )
   }
