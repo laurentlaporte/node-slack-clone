@@ -5,8 +5,10 @@ var io = require('../io');
 var Message = require('../models/Message');
 
 /* GET messages. */
-router.get('/messages', function(req, res, next) {
-  Message.find({}, function(err, data) {
+router.get('/messages/:channel', function(req, res, next) {
+  Message.find({
+    channel: req.params.channel
+  }, function(err, data) {
     if(err) {
       console.log(err);
       return res.status(500).json({msg: 'internal server error'});

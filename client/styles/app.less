@@ -69,23 +69,38 @@ body {
 	height:100%;
 	background: @sidebarBgColor;
 	font-size:14px;
-	padding: @headerHeight+15px 15px 15px 15px;
+	padding: @headerHeight+15px 0px 15px 0px;
 	color: @sidebarColor;
 
 	#channels-header {
-		font-size:1em;
+		font-size:18px;
 		text-transform: uppercase;
-		margin-bottom:8px;
+		margin-bottom:5px;
+    padding:0 15px;
 	}
 
-	.channels-list {
+	#channels-list {
 		list-style: none;
 		li {
 			margin:0px;
 			a {
+        display: block;
+        padding: 2px 5px 2px 25px;
+        line-height: 22px;
 				color: @sidebarColor;
 				text-decoration: none;
+        font-size:16px;
+
+        span.prefix {
+          color: rgb(171, 155, 169);
+        }
 			}
+      a:hover {
+        background:#3e313c;
+      }
+      &.active a {
+        background:#4c9689;
+      }
 		}
 	}
 }
@@ -146,6 +161,7 @@ body {
       border:2px solid #E0E0E0;
       width:100%;
       font-size: 15px;
+      padding:0px; margin:0px;
     }
   }
 }

@@ -24,7 +24,6 @@ export default function messages(state = initialState, action) {
         ]
       }
     case 'ADD_MESSAGE_FAIL':
-        // TODO: error message
         alert('Error sending message.');
         return state
         break;
@@ -38,7 +37,6 @@ export default function messages(state = initialState, action) {
       return {...state,
         loading: false,
         data: [
-          ...state.data,
           ...action.data
         ]
       }

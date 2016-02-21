@@ -1,0 +1,4 @@
+*App load*
+
+signupUser() -> POST /api/signup -> return {id: 123, name: 'Lau'}
+  setUser(user)

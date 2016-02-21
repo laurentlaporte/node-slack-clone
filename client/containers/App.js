@@ -12,7 +12,8 @@ class App extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    messages: PropTypes.object.isRequired
+    messages: PropTypes.object.isRequired,
+    channels: PropTypes.object.isRequired
   }
 
   render() {
@@ -27,7 +28,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    messages: state.messages
+    messages: state.messages,
+    channels: state.channels,
   }
 }
 

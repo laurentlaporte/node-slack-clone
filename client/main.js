@@ -21,6 +21,7 @@ render(
       <Route path="/" component={App}>
         <IndexRoute component={AuthPage} />
         <Route path="chat" component={ChatroomPage} />
+        <Route path="chat/:channel" component={ChatroomPage} />
       </Route>
     </Router>
   </Provider>,

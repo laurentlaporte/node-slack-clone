@@ -28,6 +28,12 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("server/public/bundle.css"),
     new webpack.NoErrorsPlugin()
-  ],
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production'),
+    //   }
+    // }),
+    // new webpack.optimize.UglifyJsPlugin()
+  ]
   devtool: 'source-map'
 }

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "start-dev": "nodemon --watch server ./server/bin/www",
+    "start-dev": "nodemon --debug --watch server -e js,jade ./server/bin/www",
     "build-js": "webpack",
     "watch-js": "webpack --watch"
   },

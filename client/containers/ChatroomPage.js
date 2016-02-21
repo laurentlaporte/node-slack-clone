@@ -3,6 +3,8 @@ const socket = io.connect();
 
 import MessagesList from '../components/MessagesList.jsx'
 import AddMessage from '../components/AddMessage.jsx'
+import Sidebar from '../components/Sidebar.jsx';
+import Header from '../components/Header.jsx';
 
 export default class ChatroomPage extends Component {
 
@@ -10,55 +12,48 @@ export default class ChatroomPage extends Component {
     actions: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    messages: PropTypes.object.isRequired
+    messages: PropTypes.object.isRequired,
+    channels: PropTypes.object.isRequired
   }
 
   componentWillMount() {
     if (this.props.user.name === null) {
       this.props.history.pushState(null, '/')
     }
+    if (this.props.params.channel == null) {
+      this.props.history.pushState(null, '/chat/' + this.props.channels.current)
+    }
   }
 
   componentDidMount() {
     const { actions } = this.props
-    actions.loadInitialMessages()
+    const currentChannel = this.props.channels.current
+
+    actions.loadInitialMessages(this.props.channels.current)
 
     // Dispatch action when we receive new message via socket
     socket.on('new_message', function(message) {
-      actions.receiveMessage(message)
+      if (message.channel == currentChannel) {
+        actions.receiveMessage(message)
+      }
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.channels.current != nextProps.channels.current) {
+      console.debug(nextProps.channels.current);
+      this.props.actions.loadInitialMessages(nextProps.channels.current)
+    }
+  }
+
   render() {
-    const { actions, user, messages } = this.props
+    const { actions, user, messages, channels } = this.props
     return (
       <div id="container">
-        <div id="header">
-          <div id="sidebar-header">
-            <h2 id="team-name">Lau's Slack clone</h2>
-          </div>
-          <div id="messages-header">
-            <h2 id="channel-name"># general</h2>
-          </div>
-        </div>
-        <div id="sidebar">
-          <div id="channels">
-            <h3 id="channels-header">Channels (5)</h3>
-            <ul className="channels-list">
-              <li>
-                <a href="/general"># general</a>
-              </li>
-              <li>
-                <a href="/tech"># tech</a>
-              </li>
-              <li>
-                <a href="/gaming"># gaming</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <Header actions={actions} channels={channels} />
+        <Sidebar actions={actions} channels={channels} />
         <MessagesList actions={actions} messages={messages} />
-        <AddMessage actions={actions} user={user} />
+        <AddMessage actions={actions} user={user} channels={channels} />
       </div>
     )
   }

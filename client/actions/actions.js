@@ -33,10 +33,10 @@ export function receiveMessage(message) {
 
 /* Messages list */
 
-export function loadInitialMessages() {
+export function loadInitialMessages(channel) {
   return dispatch => {
     dispatch(loadingInitialMessages)
-    return fetch('/api/messages')
+    return fetch('/api/messages/'+channel)
       .then(req => req.json())
       .then(json => dispatch(receiveInitialMessages(json)))
       .catch(req => dispatch(receiveInitialMessagesFail(req)))
@@ -68,5 +68,13 @@ export function setUser(user) {
   return {
     type: 'SET_USER',
     user
+  }
+}
+
+/* Channels */
+export function setChannel(channel) {
+  return {
+    type: 'SET_CHANNEL',
+    channel
   }
 }
