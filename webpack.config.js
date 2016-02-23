@@ -2,10 +2,12 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: "./client/main.js",
+  entry: {
+    app: "./client/main.js",
+    vendor: ['react', 'react-dom', 'redux', 'react-redux']
+  },
   output: {
-    filename: "server/public/bundle.js",
-    publicPath: "http://127.0.0.1:3000/"
+    filename: "server/public/bundle.js"
   },
   module: {
     loaders: [
@@ -27,13 +29,15 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("server/public/bundle.css"),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'server/public/vendor.js'),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
       }
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      warnings: false
+    })
   ]
   // devtool: 'source-map'
 }
