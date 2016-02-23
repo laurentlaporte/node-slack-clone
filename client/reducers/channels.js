@@ -1,6 +1,6 @@
 const initialState = {
   current: 'general',
-  data: [ 'general', 'tech', 'random' ]
+  data: [ 'general', 'tech', 'random', 'rsi', 'idello', 'gaming' ]
 };
 export default function channels(state = initialState, action) {
   switch (action.type) {
