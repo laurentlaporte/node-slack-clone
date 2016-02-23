@@ -65,6 +65,7 @@ export function receiveInitialMessagesFail() {
 /* User */
 
 export function setUser(user) {
+  // localStorage.setItem('username', user.)
   return {
     type: 'SET_USER',
     user

@@ -1,4 +1,5 @@
 const initialState = {
+  // name: localStorage.getItem('username') || null
   name: null
 };
 export default function messages(state = initialState, action) {

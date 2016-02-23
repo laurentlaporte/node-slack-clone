@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import ShortId from 'shortid'
 
 export default class AddMessage extends Component {
@@ -26,6 +26,8 @@ export default class AddMessage extends Component {
 
   onKeyDown(event) {
     if (event.which == 13) {
+      event.preventDefault()
+
       const text = event.target.value.trim()
 
       this.props.actions.addMessage({

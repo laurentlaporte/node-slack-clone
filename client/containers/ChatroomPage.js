@@ -17,9 +17,13 @@ export default class ChatroomPage extends Component {
   }
 
   componentWillMount() {
+
+    // Redirect to AuthPage if no user set
     if (this.props.user.name === null) {
       this.props.history.pushState(null, '/')
     }
+
+    // Redirect to default channel url
     if (this.props.params.channel == null) {
       this.props.history.pushState(null, '/chat/' + this.props.channels.current)
     }

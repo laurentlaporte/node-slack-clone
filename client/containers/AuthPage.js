@@ -42,6 +42,7 @@ export default class AuthPage extends Component {
               type="text"
               value={this.state.username}
               onChange={this.onChange.bind(this)}
+              autoFocus
             />
 
           <input
