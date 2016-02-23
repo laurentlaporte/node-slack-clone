@@ -34,6 +34,6 @@ module.exports = {
     //   }
     // }),
     // new webpack.optimize.UglifyJsPlugin()
-  ]
+  ],
   devtool: 'source-map'
 }
